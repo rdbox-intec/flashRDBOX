@@ -1,0 +1,102 @@
+#--------------------------------------------------------
+# RDBOX common account information
+#--------------------------------------------------------
+
+# User name commonly used on machines on RDBOX network
+USER_NAME=ubuntu
+
+# [Change] Password for account 'ubuntu'
+USER_PASSWD=
+
+# [Change] SSH public key for account 'ubuntu'
+USER_SSH_AUTHORIZED_KEYS=
+
+#--------------------------------------------------------
+# OS information
+#--------------------------------------------------------
+
+# [Confirmation] OS locale
+LOCALE=ja_JP.UTF-8
+
+# [Confirmation] OS timezone
+TIMEZONE=Asia/Tokyo
+
+# [Confirmation] NTP server pool list (comma delimited)
+NTP_POOLS=0.debian.pool.ntp.org,1.debian.pool.ntp.org,2.debian.pool.ntp.org,3.debian.pool.ntp.org
+
+# [Confirmation] NTP server list (comma delimited)
+NTP_SERVERS=ntp.nict.jp
+
+#--------------------------------------------------------
+# Wi-Fi information
+#--------------------------------------------------------
+
+# for /etc/rdbox/wpa_supplicant_be.conf, /etc/rdbox/hostapd_be.conf
+# [Change] SSID
+BE_SSID=
+# [Change] Password
+BE_PASSWD=
+# [Automatic calculation] Pre shared key
+BE_PSK=
+
+# for /etc/rdbox/wpa_supplicant_ap_bg.conf, /etc/rdbox/hostapd_ap_bg.conf
+# [Change] SSID
+AP_BG_SSID=
+# [Change] Password
+AP_BG_PASSWD=
+# [Automatic calculation] Pre shared key
+AP_BG_PSK=
+
+# for /etc/rdbox/hostapd_ap_an.conf
+# [Change] SSID
+AP_AN_SSID=
+# [Change] Password
+AP_AN_PASSWD=
+# [Automatic calculation] Pre shared key
+AP_AN_PSK=
+
+#--------------------------------------------------------
+# VPN information
+#--------------------------------------------------------
+
+# [Change] VPN server address
+VPN_SERVER_ADDRESS=
+
+# VPN hub name
+VPN_HUB_NAME=rdbox
+
+# [Change] Username for connecting to the VPN server
+VPN_USER_NAME=
+
+# [Change] Password for connecting to the VPN server
+VPN_USER_PASS=
+
+#--------------------------------------------------------
+# Configure the transparent proxy service. (if necessary)
+# Please do not change if you do not use proxy service.
+#--------------------------------------------------------
+
+# For http_proxy, specify the address of the proxy server of your organization starting with http.
+# Exapmle)
+#   HTTP_PROXY=http://user:pass@yourproxyserver.com:8080
+HTTP_PROXY=
+
+# For no_proxy, you need to access directly for internal. Also you can use IP Address, CIDR in no_proxy. (comma delimited)
+# Exapmle)
+#   NO_PROXY=192.168.179.0/24,10.244.0.0/16
+NO_PROXY=
+
+#--------------------------------------------------------
+# Arguments for kubeadm join <ARGS>
+#--------------------------------------------------------
+
+# [Change]
+# You join k8s cluster, you need strings from kubeadmn init.
+#
+# [...]
+# You can now join any number of machines by running the following on each node
+# as root:
+#   kubeadm join 192.168.179.2:6443 --token 2tswmw.tf3q52bo2fs1pz24 --discovery-token-ca-cert-hash sha256:78c3ac3a493c0147b28e8b4b478e41f7e6493806099fa74545808384eca78b11
+#                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This args is string after "kubeadm join "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# [...]
+KUBEADM_JOIN_ARGS=

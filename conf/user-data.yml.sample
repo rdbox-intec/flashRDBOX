@@ -43,6 +43,9 @@ ntp:
 
 write_files:
   - content: |
+      true
+    path: /var/lib/rdbox/.is_simple
+  - content: |
       SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="b8:27:eb:??:??:??", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="eth0"
       SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="b8:27:eb:??:??:??", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="wlan*", NAME="wlan10"
     path: /etc/udev/rules.d/70-persistent-net.rules

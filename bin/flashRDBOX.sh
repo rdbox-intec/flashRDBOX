@@ -364,7 +364,7 @@ fi
 TMP_MNT_DIR=/tmp/`uuidgen`
 mkdir ${TMP_MNT_DIR}
 
-mount ${SD_DEV_FILE_PART} ${TMP_MNT_DIR}
+sudo mount ${SD_DEV_FILE_PART} ${TMP_MNT_DIR}
 exit_code=$?
 
 if [ ${exit_code} -ne 0 ] ; then
@@ -372,10 +372,10 @@ if [ ${exit_code} -ne 0 ] ; then
 	exit -1
 fi
 
-cp ${USER_SSH_PUB_FILE} ${TMP_MNT_DIR}/id_rsa.pub
-cp ${USER_SSH_KEY_FILE} ${TMP_MNT_DIR}/id_rsa
+sudo cp ${USER_SSH_PUB_FILE} ${TMP_MNT_DIR}/id_rsa.pub
+sudo cp ${USER_SSH_KEY_FILE} ${TMP_MNT_DIR}/id_rsa
 
-umount ${TMP_MNT_DIR}
+sudo umount ${TMP_MNT_DIR}
 rmdir ${TMP_MNT_DIR}
 
 echo "done."

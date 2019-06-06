@@ -30,6 +30,7 @@ if ($help) {
 my @not_required_params = ("HTTP_PROXY", "NO_PROXY");
 my %params = ();
 
+$params["IS_SIMPLE_FLG"] = "";
 $params{"USER_NAME"} = "";
 $params{"USER_PASSWD"} = "";
 $params{"USER_SSH_AUTHORIZED_KEYS"} = "";

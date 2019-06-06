@@ -27,6 +27,7 @@ my @not_required_params = ("HTTP_PROXY", "NO_PROXY");
 my %params = ();
 my $salt = "roboticist";
 
+$params["IS_SIMPLE_FLG"] = "";
 $params{"USER_NAME"} = "";
 $params{"USER_PASSWD"} = "";
 $params{"USER_SSH_AUTHORIZED_KEYS"} = "";
@@ -149,6 +150,23 @@ sub dump() {
 }
 
 sub interactive_process() {
+  print "Do you want to simple mode?[y/N]\n";
+  STDOUT->flush();
+  my $ret = <STDIN>;
+  chomp($ret);
+  if ((length($ret) > 0) && ($ret =~ /^[yY]$/)) {
+    print "You chose the Simple version..\n";
+    print "Please prepare 0 or 1 USB Wi-Fi dongles.\n\n";
+    $params{'IS_SIMPLE_FLG'} = "true";
+  } else {
+    print "You chose the Full version..\n";
+    print "Please prepare 4 USB Wi-Fi dongles.\n\n";
+    $params{'IS_SIMPLE_FLG'} = "false";
+  }
+  sleep(1);
+
+  #---
+
   print "User name commonly used on machines on RDBOX network.\n";
   $params{'USER_NAME'} = &get_input("USER_NAME[$params{'USER_NAME'}]: ", $params{'USER_NAME'}, 0);
   print "--> $params{'USER_NAME'}\n\n";

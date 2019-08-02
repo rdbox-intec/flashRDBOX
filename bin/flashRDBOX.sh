@@ -113,12 +113,22 @@ if [ -z "${OPT_FLAG_n}" ] ; then
 		echo
 		while :
 		do
+			read -p "prefix? " HOST_PREFIX
+			case $HOST_PREFIX in
+				*) if [ ! -z ${HOST_PREFIX} ] ; then echo "[${HOST_PREFIX}]"; break; fi;;
+			esac
+		done
+		echo
+		echo "  * '00' is a special host name."
+		echo "  * '^[0-9a-zA-Z]+$' (ex: room1) is a base master."
+		while :
+		do
 			read -p "suffix? " HOST_SUFFIX
 			case $HOST_SUFFIX in
 				*) if [ ! -z ${HOST_SUFFIX} ] ; then echo "[${HOST_SUFFIX}]"; break; fi;;
 			esac
 		done
-		TARGET_HOSTNAME=rdbox-${HOST_TYPE}-${HOST_SUFFIX}
+		TARGET_HOSTNAME=${HOST_PREFIX}-${HOST_TYPE}-${HOST_SUFFIX}
 	fi
 
 	echo

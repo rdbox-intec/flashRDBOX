@@ -27,7 +27,10 @@ my @not_required_params = ("HTTP_PROXY", "NO_PROXY");
 my %params = ();
 my $salt = "roboticist";
 
-$params["IS_SIMPLE_FLG"] = "";
+$params{"IS_SIMPLE_FLG"} = "";
+$params{"EXTERNAL_CONNECT"} = "";
+$params{"EXTERNAL_SSID"} = "";
+$params{"EXTERNAL_PSK"}= "";
 $params{"USER_NAME"} = "";
 $params{"USER_PASSWD"} = "";
 $params{"USER_SSH_AUTHORIZED_KEYS"} = "";
@@ -150,7 +153,7 @@ sub dump() {
 }
 
 sub interactive_process() {
-  print "Do you want to simple mode?[y/N]\n";
+  print "Do you want to use RDBOX's simple mode? [y/N]: ";
   STDOUT->flush();
   my $ret = <STDIN>;
   chomp($ret);
@@ -164,6 +167,37 @@ sub interactive_process() {
     $params{'IS_SIMPLE_FLG'} = "false";
   }
   sleep(1);
+
+  #---
+  if ($params{'IS_SIMPLE_FLG'} eq "true") {
+    print "How do you connect to the external network? \n";
+    print "0: Ethernet \n";
+    print "1: Wi-Fi \n";
+    print "What number do you select? [0-1]: ";
+    $params{'EXTERNAL_CONNECT'} = &get_input("EXTERNAL_CONNECT[$params{'EXTERNAL_CONNECT'}]: ", $params{'EXTERNAL_CONNECT'}, 0);
+    print "--> $params{'EXTERNAL_CONNECT'}\n\n";
+    STDOUT->flush();
+    sleep(1);
+  }
+
+  #---
+  if (($params{'IS_SIMPLE_FLG'} eq "true") && ($params{'EXTERNAL_CONNECT'} eq "1")) {
+    print "[Change] SSID for /etc/rdbox/wpa_supplicant_yoursite.conf (connect to external network.)\n";
+    $params{'EXTERNAL_SSID'} = &get_input("EXTERNAL_SSID[$params{'EXTERNAL_SSID'}]: ", $params{'EXTERNAL_SSID'}, 0);
+    print "--> $params{'EXTERNAL_SSID'}\n\n";
+    STDOUT->flush();
+    sleep(1);
+  }
+
+  #---
+  if (($params{'IS_SIMPLE_FLG'} eq "true") && ($params{'EXTERNAL_CONNECT'} eq "1")) {
+    print "[Change] Password for SSID \'$params{'EXTERNAL_SSID'}\'.\n";
+    my $tmp;
+    ($tmp, $params{'EXTERNAL_PSK'}) = &get_wpa_psk("EXTERNAL_PASSWD[]: ", $params{'EXTERNAL_SSID'}, '', $params{'EXTERNAL_PSK'});
+    print "PSK --> $params{'EXTERNAL_PSK'}\n\n";
+    STDOUT->flush();
+    sleep(1);
+  }
 
   #---
 

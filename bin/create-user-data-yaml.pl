@@ -31,6 +31,9 @@ my @not_required_params = ("HTTP_PROXY", "NO_PROXY");
 my %params = ();
 
 $params["IS_SIMPLE_FLG"] = "";
+$params{"EXTERNAL_CONNECT"} = "";
+$params{"EXTERNAL_SSID"} = "";
+$params{"EXTERNAL_PSK"}= "";
 $params{"USER_NAME"} = "";
 $params{"USER_PASSWD"} = "";
 $params{"USER_SSH_AUTHORIZED_KEYS"} = "";

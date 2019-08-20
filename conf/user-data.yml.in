@@ -52,6 +52,17 @@ write_files:
   #   You need to match the psk of "wpa_supplicant_be.conf" with the  wpa_passphrase of "hostapd_be.conf".
   #   It is recommended not to change the setting items other than SSID and passphrase.
   ###########################################################################
+  # connect to external network
+  - content: |
+      ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+      update_config=1
+      country=JP
+      network={
+          ssid="EXTERNAL_SSID"
+          psk=EXTERNAL_PSK
+          scan_ssid=1
+      }
+    path: /etc/rdbox/wpa_supplicant_yoursite.conf
   # Setting for communication between the base station and the base station.
   - content: |
       ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev

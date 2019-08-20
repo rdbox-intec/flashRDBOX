@@ -27,10 +27,13 @@ if ($help) {
 (-f $infile) || die "$infile: $!\n---\n$help_message";
 (-f $paramfile) || die "$paramfile: $!\n---\n$help_message";
   
-my @not_required_params = ("HTTP_PROXY", "NO_PROXY");
+my @not_required_params = ("HTTP_PROXY", "NO_PROXY", "EXTERNAL_CONNECT", "EXTERNAL_SSID", "EXTERNAL_PSK");
 my %params = ();
 
 $params["IS_SIMPLE_FLG"] = "";
+$params{"EXTERNAL_CONNECT"} = "";
+$params{"EXTERNAL_SSID"} = "";
+$params{"EXTERNAL_PSK"}= "";
 $params{"USER_NAME"} = "";
 $params{"USER_PASSWD"} = "";
 $params{"USER_SSH_AUTHORIZED_KEYS"} = "";
